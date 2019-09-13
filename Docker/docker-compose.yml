@@ -1,0 +1,27 @@
+version: '3'
+services:
+    client:
+        build:
+            context: ./php
+            args:
+                - APP_DIR=${APP_DIR}
+        image: php-symfony-outside-dump-server-example-client
+        container_name: php-symfony-outside-dump-server-example-client
+        volumes:
+            - ../:${APP_DIR}
+        environment:
+            - DUMP_SERVER_HOST=server:9912
+        depends_on:
+            - server
+    server:
+        build:
+            context: ./php
+            args:
+                - APP_DIR=${APP_DIR}
+        image: php-symfony-outside-dump-server-example-server
+        container_name: php-symfony-outside-dump-server-example-server
+        entrypoint: "/var/www/app/vendor/bin/var-dump-server"
+        environment:
+            - VAR_DUMPER_SERVER=server:9912
+        volumes:
+            - ../:${APP_DIR}
