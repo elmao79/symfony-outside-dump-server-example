@@ -1,4 +1,4 @@
-# Symfony dump server outside Symfonys
+# Symfony dump server outside Symfony
 A Symfony dump server project example outside Symfony.
 
 ## Steps to try example inside a Docker container
@@ -11,7 +11,7 @@ Create Docker container where test project:
 cd symfony-outside-dump-server-example/Docker
 docker-compose up -d
 ```
-Install dependencies (PHPUnit):
+Install dependencies:
 ```
 docker-compose run php composer install
 ```
